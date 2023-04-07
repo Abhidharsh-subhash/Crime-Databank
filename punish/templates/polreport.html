@@ -1,0 +1,82 @@
+{% extends "polhome.html" %}
+{% load static %}
+{% block content %}
+<style>
+   h2{
+        margin-left: 125px;
+    }
+    textarea {
+        margin-left: 550px;
+        margin-top: 13px;
+        width: 665px;
+        height: 180px;
+        padding: 12px 20px;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        background-color: #d0cfcf;;;
+        font-size: 16px;
+        resize: none;
+    }
+    input{
+        border-radius: 5px;
+        height: 37px;
+        background-color: aliceblue;
+    }
+    .button{
+        margin-left: 830px;
+        margin-top: 12px;
+    }
+    button{
+        color: aliceblue;
+        background-color: rgb(252 95 95);;
+        padding: 5px 32px;
+    }
+    .name{
+        margin-left: 555px;
+    }
+    .des{
+        margin-left: 789px;
+    margin-top: -36px;
+    }
+    .mob{
+        margin-left: 1025px;
+    margin-top: -37px;
+    }
+    .input{
+        margin-top: 65px;
+    margin-left: 0px;
+    }
+    select{
+        border-radius: 5px;
+        height: 37px;
+        background-color: aliceblue;
+        width: 190px;
+    }
+</style>
+<main>
+    <div class="container-fluid px-4">
+      <h2 class="mt-4" align="center"><b>Submit enquiry reports</b></h2>
+      <hr>
+    </div>
+</main>
+<form method="post" action="{% url 'adreply' %}">
+    {% csrf_token %}
+    <div class="input">
+        <div class="name"><input type="text" placeholder="Username" name="username"></div>
+        <div class="des">
+            <select name="category">
+                <option>--Crime category--</option>
+                {% for d in datacat %}
+                <option value="{{d.categoryid}}">{{d.category}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mob"><input type="text" placeholder="status" name="status"></div>
+        </div>
+        <textarea name="comp" placeholder="Police complaint......" required></textarea>
+        <div class="button">
+            <button type="submit">Submit</button>
+        </div>
+</form>
+{% endblock %}

@@ -1,0 +1,186 @@
+{% extends "userhome.html" %}
+{% load static %}
+{% block content %}
+<style>
+  .body{
+    margin-left: 195px;
+  }
+  .student-profile .card {
+    border-radius: 10px;
+}
+.student-profile .card .card-header .profile_img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin: 10px auto;
+    border: 10px solid #ccc;
+    border-radius: 50%;
+}
+.student-profile .card h3 {
+    font-size: 20px;
+    font-weight: 700;
+}
+.student-profile .card p {
+    font-size: 16px;
+    color: #000;
+}
+.student-profile .table th,
+.student-profile .table td {
+    font-size: 14px;
+    padding: 5px 10px;
+    color: #000;
+}
+#shadow{
+  margin-top: -219px;
+  margin-left: 605px;
+  width: 520px;
+  height: 418px;
+}
+#card{
+  margin-left: 180px;
+  margin-top: 75px;
+}
+#table{
+  width:100px;
+}
+#show{
+  margin-top: -22px;;
+}
+tbody{
+  margin-left: -10px;
+}
+.name{
+  margin-left: 45px;
+  margin-top: 35px;
+}
+.sem{
+  margin-left: 178px;
+  margin-top: -29px;
+}
+.abhi{
+  margin-left: 232px;
+  margin-top: -30px;
+}
+.whole{
+  margin-left: -9px;
+  margin-top: -8px;
+}
+b{
+  font-size: 20px;
+}
+.whol{
+  margin-left: -12px;
+  margin-top: -22px
+}
+.semi{
+  margin-left: 175px;
+  margin-top: -29px;
+}
+.button{
+  margin-left: 335px;
+  margin-top: -190px;
+}
+#but{
+  background-color: #f5b968;
+}
+</style>
+
+<div class="body">
+<div class="student-profile py-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4" id="card">
+        {% for d in datapf %}
+        <div class="card shadow-sm">
+          <div class="card-header bg-transparent text-center">
+            <img class="profile_img" src="{% static 'img/profile.jpg' %}" alt="student dp">
+            <h3>{{d.name}}</h3>
+          </div>
+        </div>
+      </div>
+      <form method="post" enctype="multipart/form-data" action="{% url 'editusr' %}">
+        {% csrf_token %}
+      <div class="col-lg-8" id="show">
+        <div class="card shadow-sm" id="shadow">
+         <div class="card-body pt-0">
+           <div class="whole">
+           <div class="name"><b>Name</b></div>
+           <div class="semi"><b>:</b></div>
+           <div class="abhi"><b>{{d.name}}</b></div>
+           </div>
+           <div class="whol">
+            <div class="name"><b>Phone no</b></div>
+            <div class="sem"><b>:</b></div>
+            <div class="abhi"><b>{{d.phoneno}}</b></div>
+            </div>
+            <div class="whol">
+              <div class="name"><b>Address</b></div>
+              <div class="sem"><b>:</b></div>
+              <div class="abhi"><b>{{d.address}}</b></div>
+              </div>
+              <div class="whol">
+                <div class="name"><b>Aadhar no</b></div>
+                <div class="sem"><b>:</b></div>
+                <div class="abhi"><b>{{d.aadharno}}</b></div>
+                </div>
+                <div class="whol">
+                  <div class="name"><b>E-mail</b></div>
+                  <div class="sem"><b>:</b></div>
+                  <div class="abhi"><b>{{d.email}}</b></div>
+                  </div>
+                  <div class="whol">
+                    <div class="name"><b>Gender</b></div>
+                    <div class="sem"><b>:</b></div>
+                    <div class="abhi"><b>{{d.gender}}</b></div>
+                    </div>
+                    <div class="whol">
+                      <div class="name"><b>District</b></div>
+                      <div class="sem"><b>:</b></div>
+                      <div class="abhi"><b>{{d.district.district}}</b></div>
+                      </div>
+                      {% endfor %}
+          </div>
+        </div>
+      </div>
+      <div class="button">
+        <a type="button" id="but" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#edit-{{d.userid}}">Edit profile</a>
+      </div>
+      <div class="modal fade" id="edit-{{d.userid}}" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="background-color: #ffff">
+                <div class="modal-header">
+                    <h4 class="modal-title custom_align" id="Heading">Edit details</h4>
+                </div>
+                <div class="modal-body">
+                    <br>
+                    <h3 class="modal-title custom_align" id="Heading" style="color:#333">Do you want to edit your details ?</h3>
+                    <br>
+                    <form class="form-horizontal" method="post" name="myForm" onsubmit="" action="{% url 'editusr' %}?u={{d.userid}}">
+                        {% csrf_token %}
+
+                        <div class="box-content">
+                            <div class="col-md-10 col-md-offset-2">
+                                <div class="form-group">
+
+                                </div>
+                            </div>
+                            <button name="edit" type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok-sign"></span>Yes</button>
+                            <button type="reset" class="btn btn-default pull-right" data-bs-dismiss="modal"><span
+                                    class="glyphicon glyphicon-remove"></span>No</button>
+                        </div>
+                </div>
+            </div>
+
+            </form>
+           
+        </div>
+        <!-- /.modal-content -->
+    </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends "userhome.html" %}
+{% load static %}
+{% block content %}
+<style>
+  h2{
+    margin-left: 155px;
+  }
+</style>
+<main>
+    <div class="container-fluid px-4">
+        <h2 class="mt-4" align="center"><b>Complaint list</b></h2>
+        <hr>
+    </div>
+</main>
+<div  class="table">
+    <table width="83%" height="50px" border="1px">
+        <thead>
+            <tr align="center">
+            <th>Sl:No</th>
+            <th>Name</th>
+            <th>District</th>
+            <th>Location</th>
+            <th>Category</th>
+            <th>Date</th>
+            <th>Complaint description</th>
+            <th>Action</th>
+            </tr>
+        </thead>
+        {% for d in data %}
+        <tbody>
+            <tr align="center">
+                <td>{{forloop.counter}}</td>
+                <td>{{d.name}}</td>
+                <td>{{d.district.district}}</td>
+                <td>{{d.location.location}}</td>
+                <td>{{d.category.category}}</td>
+                <td>{{d.date}}</td>
+                <td>{{d.complaint}}</td>
+                <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#edit-{{d.complaintid}}">Edit</button></td>
+
+                <div class="modal" id="edit-{{d.complaintid}}" role="dialog">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content" style="background-color: #ffff">
+                      <div class="modal-header">
+                        <h4 class="modal-title custom_align" id="Heading">Edit complaint</h4>
+                      </div>
+                      <div class="modal-body" style="background-color: #ffff">
+                        <form class="form-horizontal" method="post" name="myForm" action="{% url 'editcom' %}?c={{d.complaintid}}">
+                          {% csrf_token %}
+        
+                          <div class="box-content">
+                            <div class="col-md-12">
+                              <h3 class="modal-title custom_align" id="Heading" style="color: #333">Are you sure want to edit your complaint ?</h3>
+                            </div>
+                            <br>
+                            <button name="edit" type="submit" class="btn btn-success"><span class="glyphicon 
+                                glyphicon-ok-sign"></span>Submit</button>
+                            <button type="reset" class="btn btn-default pull-right" data-bs-dismiss="modal"><span
+                                class="glyphicon glyphicon-remove"></span>No</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+    </div>
+{% endblock %}

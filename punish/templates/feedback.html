@@ -1,0 +1,32 @@
+{% extends "adhome.html" %}
+{% load static %}
+{% block content %}
+<main>
+    <div class="container-fluid px-4">
+        <h2 class="mt-4" align="center"><b>Users Feedbacks</b></h2>
+        <hr>
+    </div>
+</main>
+<div  class="table">
+    <table width="83%" border="1px">
+        <thead>
+            <tr align="center">
+            <th>Sl:No</th>
+            <th>Username</th>
+            <th>Subject</th>
+            <th>Feedback</th>
+            </tr>
+        </thead>
+        {% for d in datafd %}
+        <tbody>
+            <tr align="center">
+                <td>{{forloop.counter}}</td>
+                <td>{{d.username}}</td>
+                <td>{{d.subject}}</td>
+                <td>{{d.feedback}}</td>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+    </div>
+{% endblock %}

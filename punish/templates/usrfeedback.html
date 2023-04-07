@@ -1,0 +1,66 @@
+{% extends "userhome.html" %}
+{% load static %}
+{% block content %}
+<style>
+    h2{
+        margin-left: 150px;
+    }
+    .name{
+        margin-top: 70px;
+        margin-left: 584px;
+        width: 255px;
+        height: 45px;
+        border-radius: 6px;
+        border-color: black;
+    }
+    .subject{
+        margin-left: 95px;
+        width: 255px;
+        height: 45px;
+        border-radius: 6px;
+        border-color: black;
+    }
+    input[type=text]:focus {
+        background-color: rgb(218, 242, 250);
+    }
+    textarea {
+        margin-left: 550px;
+        margin-top: 30px;
+        width: 665px;
+        height: 150px;
+        padding: 12px 20px;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        background-color: #f8f8f8;
+        font-size: 16px;
+        resize: none;
+    }
+    .button{
+        margin-left: 830px;
+        margin-top: 12px;
+    }
+    button{
+        color: aliceblue;
+        background-color: rgb(218 95 95);
+        padding: 5px 32px;
+    }
+</style>
+<main>
+    <div class="container-fluid px-4">
+        <h2 class="mt-4" align="center"><b>Submit feedbacks about your complaint progress</b></h2>
+        <hr>
+    </div>
+</main>
+<form method="post" enctype="multipart/form-data" action="{% url 'usrfeedback' %}">
+    {% csrf_token %}
+<div>
+    <input type="text" class="name" name="username" placeholder="Enter your name" required>
+    <input type="text" class="subject" name="subject" placeholder="Subject of feedback" required>
+</div>
+<textarea name="feedback" placeholder="Feedback......" required></textarea>
+<div class="button">
+    <button type="submit">Submit</button>
+</div>
+</form>
+{% endblock %}

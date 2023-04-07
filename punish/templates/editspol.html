@@ -1,0 +1,80 @@
+{% extends "adhome.html" %}
+{% load static %}
+{% block content %}
+<style>
+  form{
+    margin-left: 282px;
+  }
+  .head{
+    margin-left: 775px;
+    font-size: 35px;
+    color: silver;
+    margin-top: 25px;
+  }
+  input{
+    border-radius: 5px;
+    width: 220px;
+    height: 32px;
+  }
+  #name{
+    margin-left: 475px;
+  }
+  #qual{
+    margin-left: 474px;
+    margin-top: 15px;
+  }
+  #mob{
+    margin-left: 473px;
+  }
+  #addr{
+    margin-left: 471px;
+  }
+  #rew{
+    margin-left: 470px;
+    margin-top: 15px;
+  }
+  .button{
+    width: 20px;
+    margin-left: 450px;
+    margin-top: 25px;
+  }
+  #button{
+    background-color: #6cc7ea;
+  }
+</style>
+<div class="head"><b>Edit profile</b></div><hr>
+  <form action="{% url 'editspol' %}?c={{d.policeid}}" method="post">
+        {% csrf_token %}
+        
+    <div class="row mt-3">
+      <div class="form-group col-md-6" id="name">
+        <label for="title"><b>Name</b></label><br>
+        <input type="text" id="title" name="t1" value="{{d.name}}"><br>
+      </div>
+      <div class="form-group col-md-6" id="qual">  
+        <label for="role"><b>Qualification</b></label><br>
+        <input type="text" id="role" name="t2" value="{{d.qualification}}"><br>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="form-group col-md-6" id="mob">
+        <label for="designation"><b>Mobile no</b></label><br>
+        <input type="number" id="designation" name="t3" value="{{d.mobileno}}"><br>
+      </div>
+    <div class="row mt-3">
+      <div class="form-group col-md-6" id="addr">
+        <label for="experience"><b>Address</b></label><br>
+        <input type="text" id="experience" name="t4" value="{{d.address}}"><br>
+      </div>
+      <div class="form-group col-md-6" id="rew">
+        <label for="experiencein"><b>Rewards</b></label><br>
+        <input type="text" id="experiencein" name="t5" value="{{d.rewards}}"><br>
+      </div>
+    </div>
+    <br>
+    <div class="button">
+    <button type="submit" id="button" value="Submit">Submit</button>
+    </div>
+  </form> 
+
+{% endblock %}

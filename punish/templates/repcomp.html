@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Dashboard - SB Admin</title>
+        <!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap" rel="stylesheet">
+<!-- Bootstrap CSS -->
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
+<!-- Font Awesome CSS -->
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css'>
+        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+        <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+        <link href="{% static 'css/extra.css' %}" rel="stylesheet" />
+        <script src="{% static 'js/change.js' %}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+<style>
+    .form{
+        padding-top: 25px;
+        margin-left: 310px;
+        /* padding: 1em 0;
+        border: 1px dotted red;  */
+    }
+    input[type=text],input[type=number],input[type=files]{
+        padding: 30px;
+        border:0;
+        box-shadow:0 0 15px 4px rgba(46, 25, 25, 0.06);
+        border-radius:13px;
+        width: 305px;
+    }
+    select{
+        padding: 17px;
+        border:0;
+        box-shadow:0 0 15px 4px rgba(46, 25, 25, 0.06);
+        border-radius:13px;
+        width: 305px;
+    }
+    #spot{
+        margin-top: 30px;
+        margin-left: 20px;
+    }
+    #phone{
+        margin-left: 82px;
+    }
+    #location{
+        margin-left: 82px;
+    }
+    #name{
+        margin-left: 10px; 
+    }
+    #date{
+        margin-left: 4px;
+        font-size: 20px;
+    }
+    #dis{
+        margin-left: 21px;
+    }
+    #files{
+        margin-left: 77px;
+        font-size: 20px;
+    }
+    .day{
+        padding: 15px;
+        border:0;
+        box-shadow:0 0 15px 4px rgba(46, 25, 25, 0.06);
+        border-radius:13px;
+        width: 170px;
+    }
+    .body {
+        margin:20px;
+        width:90%;
+        background-color: #fafafa;
+        box-sizing:border-box;
+        margin-top: 25px;
+    }
+    textarea {
+        padding-top: 30px;
+        width:100%;
+        resize: vertical;
+        padding:15px;
+        border-radius:15px;
+        border:0;
+        box-shadow:4px 4px 10px rgba(5, 5, 5, 0.06);
+        height:160px;
+}
+.block {
+  display: block;
+  width: 90%;
+  border: none;
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 40px;
+  margin-left: 20px;
+}
+#time{
+    margin-left: 92px;
+}
+
+.block:hover {
+  background-color: rgb(161, 231, 154);
+  color: rgb(42, 187, 79);
+}
+#select{
+    margin-left:81px;
+}
+.input{
+    width: 10px;
+}
+h2{
+    margin-left: 235px;
+}
+</style>
+
+</head>
+<body class="sb-nav-fixed">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <!-- Navbar Brand-->
+        <a class="navbar-brand ps-3">User Panel</a>
+        <!-- Sidebar Toggle-->
+        
+        <!-- Navbar Search-->
+        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+            
+        </form>
+        <!-- Navbar-->
+        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="{% url 'userchange' %}">change password</a></li>
+                    <li><hr class="dropdown-divider" /></li>
+                    <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                    <li><hr class="dropdown-divider" /></li>
+                    <li><a class="dropdown-item" href="{% url 'usrprofile' %}">View profile</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <div class="sb-sidenav-menu-heading">Services</div>
+                        <a class="nav-link" href="{% url 'repcomp' %}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-money-check-pen"></i></div>Report complaints
+                        </a>
+                        <a class="nav-link" href="">
+                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>Enquiry Report
+                        </a>
+                        <div class="sb-sidenav-menu-heading">Report</div>
+                        <a class="nav-link" href="{% url 'usrfeedback' %}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>Report feedback
+                        </a>
+                        <div class="sb-sidenav-menu-heading">Activity</div>
+                        <a class="nav-link" href="{% url 'complaintlist' %}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>Compaints list
+                        </a>
+                        
+                    </div>
+                    </div>
+                </div>
+                <div class="sb-sidenav-footer">
+                    <div class="small">Logged in as:</div>
+                    Start Bootstrap
+                </div>
+            </nav>
+        </div>
+        <div id="layoutSidenav_content">
+<main>
+    <div class="container-fluid px-4">
+        <h2 class="mt-4" align="center"><b>Report compalaints</b></h2>
+        <hr>
+    </div>
+</main>
+<form class="form" method="post" enctype="multipart/form-data" action="{% url 'repcomp' %}">
+    {% csrf_token %}
+<div>
+    <label id="name"></label>
+    <input type="text" class="input" placeholder="Enter petitioner name" id="name" name="name">
+    <label id=""></label>
+    <input type="number" class="input" placeholder="Enter phone number" id ="phone" name="phone">
+    <label id=""></label>
+    <select id="select" name="category">
+        <option>--Crime category--</option>
+        {% for d in datacat %}
+        <option value="{{d.categoryid}}">{{d.category}}</option>
+        {% endfor %}
+    </select>
+    <div class="body">
+    <textarea placeholder="write complaint..." name="complaint"></textarea>
+    </div>
+    <select id="dis" name="district" onchange="comp(this.value)">
+        <option>--District--</option>
+        {% for d in datadist %}
+        <option value="{{d.districtid}}">{{d.district}}</option>
+        {% endfor %}
+    </select>
+    <select id="location" name="location">
+        <option value=''>--Location--</option>
+    </select>
+    <label id=""></label>
+    <input type="text" class="input" placeholder="expected time of crime" id ="time" name="time">
+    <label id=""></label>
+    <input type="text" class="input" placeholder="Spot address of crime" id ="spot" name="spot">
+    <label id="files"><b>Evidence:&nbsp;</b></label>
+    <input type="file" id="" name="evidence" class="" multiple>
+    <label id="date"><b>Date of crime:</b>&nbsp;</label>
+    <input type="date" class="day" placeholder="Enter phone number" id ="day" name="date">
+    <button class="block"><b>Register compaint</b></button>
+</div>
+</form>
+</div>
+</div>
+<script type="text/javascript">
+    function comp(x)
+     {
+
+       var xhttp = new XMLHttpRequest();
+       xhttp.onreadystatechange = function () {
+
+      if (this.readyState == 4 && this.status == 200) {
+
+      document.getElementById('location').innerHTML = this.responseText;
+}
+};
+
+
+xhttp.open("GET", "getloc/?location="+x, true);
+
+xhttp.send();
+
+}
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+</body>
+</html>

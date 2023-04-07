@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+	{% load static %}
+<head>
+	<meta charset="utf-8">
+	<meta charset="utf-8">
+	<title>Kanun - Law Firm Website Template</title>
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<meta content="Law Firm Website Template" name="keywords">
+	<meta content="Law Firm Website Template" name="description">
+
+
+	<title>My Login Page</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/my-login.css' %}">
+	<style>
+		#a11{
+			width: 336px;
+			height: 46px;
+		}
+	</style>
+</head>
+
+<body class="my-login-page">
+	<section class="h-100">
+		<div class="container h-100">
+			<div class="row justify-content-md-center h-100">
+				<div class="card-wrapper">
+					<div class="brand">
+						<img src="{% static 'img/police.png' %}" alt="logo">
+					</div>
+					<div class="card fat">
+						<div class="card-body">
+							<h2 class="card-title" align="center"><b>User Registration</b></h2>
+							<form method="post" enctype="multipart/form-data" class="my-login-validation" onsubmit="" action="{% url 'userreg' %}">
+								{% csrf_token %}
+								<div class="form-group">
+									<label for="text"><b>Name</b></label>
+									<input id="email" type="text" class="form-control" name="a1" value="" required>
+								</div>
+
+								<div class="form-group">
+									<label for="text"><b>Phone no</b></label>
+									<input id="email" type="number" class="form-control" name="a2" value="" maxlength="10" required>
+								</div>
+
+								<div class="form-group">
+									<label for="text"><b>Address</b></label>
+									<input id="text" type="text" class="form-control" name="a3" value="" required>
+								</div>
+
+								<div class="form-group">
+									<label for="text"><b>Aadhar nnumber</b></label>
+									<input id="email" type="number" class="form-control" name="a6" value="" maxlength="12" required>
+								</div>
+
+								<div class="form-group">
+									<label for="text"><b>E-mail</b></label>
+									<input id="email" type="mail" class="form-control" name="a7" value="" required>
+								</div>
+
+								<div>
+									<label for="text"><b>Gender:</b></label>&emsp;&emsp;
+									<input id="email" type="radio" name="a8" value="male" required>
+									<label for="male">Male</label>&emsp;
+									<input id="email" type="radio" name="a8" value="female" required>
+									<label for="female">Female</label>&emsp;
+									<input id="email" type="radio" name="a8" value="other" required>
+									<label for="other">Others</label><br>
+								</div><br>
+
+								<div class="form-group">
+									<label for="text"><b>District</b></label>
+									<Select name="a9" class="form-control" value="" id="district" onchange="shi(this.value)" style="width:337px;" required>
+									<option value="">--Select--</option>
+									{% for d in datadist %}
+									<option value="{{d.districtid}}">{{d.district}}</option>
+									{% endfor %}
+								   </select>
+								</div>
+
+								<div class="form-group">
+									<label for="location"><b>Location</b></label>
+									<Select name="a10" class="form-control" value="" id="a10" style="width:337px;" >
+										<option value="">--Select--</option>
+									   </select>
+								</div>
+
+								<div class="form-group">
+									<label for="photo"><b>Profile Photo</b></label>
+									<input name="a11" type="file" class="form-control" value="" id="a11" required>
+								</div>
+
+								<div class="form-group">
+									<label for="password"><b>Password</b></label>
+									<input id="password" type="password" class="form-control" name="a4" required data-eye>
+								    <div class="invalid-feedback">
+								    	Password is required
+							    	</div>
+								</div><br>
+
+								<div class="form-group m-0">
+									<button type="submit" class="btn btn-primary btn-block">
+										Register
+									</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script src="{% static 'js/my-login.js' %}"></script>
+    <script>
+	//   function val(x){
+	// 	  var name=/^[A-Za-z ]+$/;
+	// 	  var address=/^[A-Za-z0-9 ]+$/;
+	// 	  var phone=/^[0-9 ]+$/;
+	// 	  var password=/^(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]+$/;
+	// 	  var pw1=document.getElementById("psw1").value;
+	// 	  var pw2=document.getElementById("psw2").value;
+
+	// 	  if(x.a1.value==''){
+	// 		  alert("please enter your name");
+	// 		  x.a1.focus();
+	// 		  return false;
+	// 	  }
+	// 	  else if(!(x.a1.value.match(name))){
+	// 		  alert("Username contains invalid characters");
+	// 		  x.a1.focus();
+	// 		  return false;
+	// 	  }
+	// 	  if(x.a4.value==''){
+	// 		  alert("please enter your Password");
+	// 		  x.a4.focus();
+	// 		  return false;
+	// 	  }
+	// 	  else if(!(x.a4.value.match(password))){
+	// 		  alert("Password must contain atleast one numeric digit and a special character");
+	// 		  x.a4.focus();
+	// 		  return false;
+	// 	  }
+	// 	  if(x.a5.value==''){
+	// 		  alert("please re-enter your Password");
+	// 		  x.a5.focus();
+	// 		  return false;
+	// 	  }
+	// 	// another code for passwords validation  
+	// 	//   if(x.a2.value != x.a3.value){
+	// 	// 	  alert("Passwords are not matching");
+	// 	// 	  x.a3.focus();
+	// 	// 	  return false;
+	// 	//   }
+
+	// 	if(pw1 != pw2){
+	// 		  alert("Passwords are not matching");
+	// 		  x.a5.focus();
+	// 		  return false;
+	// 	  }
+	// 	if(x.a2.value==''){
+	// 		alert("please enter your phone number");
+	// 		x.a2.focus();
+	// 		return false;
+	// 	}
+	// 	if(!(x.a2.value.match(phone))){
+	// 		alert("phone number contains invalid characters");
+	// 		x.a2.focus();
+	// 		return false;
+	// 	}
+	// 	if(x.a2.value.length!=10){
+	// 		alert("invalid phone number!");
+	// 		x.a2.focus();
+	// 		return false;
+	// 	}
+	// 	else{
+	// 		var a=x.a2.value.split("");
+	// 		if(a[0]!=9 && a[0]!=8 && a[0]!=7 && a[0]!=6){
+	// 			alert("invalid phonr number!");
+	// 			x.a2.focus();
+	// 			return false;
+	// 		}
+	// 	}
+	// 	if(x.a3.value==''){
+	// 		alert("please enter your address");
+	// 		x.a3.focus();
+	// 		return false;
+	// 	}
+	// 	if(!(x.a3.value.match(address))){
+	// 		alert("invalid address!");
+	// 		x.a3.focus();
+	// 		return false;
+	// 	}
+		
+
+	//   }
+     </script>
+	<script type="text/javascript">
+		function shi(x)
+		 {
+
+           var xhttp = new XMLHttpRequest();
+           xhttp.onreadystatechange = function () {
+
+	      if (this.readyState == 4 && this.status == 200) {
+
+		  document.getElementById('a10').innerHTML = this.responseText;
+	}
+};
+
+
+xhttp.open("GET", "getloca/?a10="+x, true);
+
+xhttp.send();
+
+}
+
+</script>
+</body>
+</html>

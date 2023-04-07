@@ -1,0 +1,68 @@
+{% extends "adhome.html" %}
+{% load static %}
+{% block content %}
+<style>
+    .location{
+    background-color: e9ecef;
+    height:200px ;
+    margin-left: 250px;
+    width: 1200px;
+}
+.text{
+    margin-left: 100px;
+    padding-top: 65px;
+    width: 150px;
+}
+.head{
+    margin-left: 200px;
+    width: 200px;
+    margin-top: -70px;
+}
+.select{
+    margin-left: -52px;
+    padding-top: 12px;
+}
+.inp{
+    padding-top: 12px;
+}
+.button{
+    margin-left: 421px;
+    margin-top: 15px;
+    color: rgb(244, 248, 244);
+    background-color: red;
+}
+#staticBackdrop{
+    text-align: center;
+}
+</style>
+<main>
+    <div class="container-fluid px-4">
+        <h2 class="mt-4" align="center"><b>Add location</b></h2><hr>
+        </div>
+        <div class="location">
+            <form method="post" action="{% url 'loc' %}">
+                {% csrf_token %}
+           <div class="text">
+               <h5>select district</h5>
+               <div class="select">
+                <select style="width: 115px; width: 100px;" name="district" id="district" onchange="" required>>
+                <option value=" ">---Select---</option>
+                {% for d in data %}
+                      <option value="{{d.districtid}}">{{d.district}}</option>
+                     {% endfor %}
+
+                </select>
+             </div>
+               <div class="head">
+                   <h5>Enter location name</h5>
+                   <div class="inp">
+                    <input type="text" name="location" required>
+                    </div>
+               </div>
+           </div>
+           <div></div>
+           <button class="button" type="submit" value="Submit">Submit</button>
+        </form>
+        </div>
+</main>
+{% endblock %}

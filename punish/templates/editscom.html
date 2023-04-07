@@ -1,0 +1,67 @@
+{% extends "userhome.html" %}
+{% load static %}
+{% block content %}
+<style>
+    .input{
+        width: 10px;
+    }
+    #name{
+        margin-left: 255px;
+    margin-top: 55px;
+    }
+    input[type=text],input[type=number]{
+        padding: 30px;
+        border:0;
+        box-shadow:0 0 15px 4px rgba(46, 25, 25, 0.06);
+        border-radius:13px;
+        width: 305px;
+    }
+    h4{
+        font-size: 35px;
+    }
+    .edit{
+        margin-left: 750px;
+        margin-top: 35px;
+    }
+    .text {
+        padding-top: 30px;
+        width:64%;
+        resize: vertical;
+        padding:15px;
+        border-radius:15px;
+        border:0;
+        margin-left: 375px;
+        margin-top: 25px;
+        box-shadow:4px 4px 10px rgba(5, 5, 5, 0.06);
+        height:160px;
+    }
+    .input{
+    width: 10px;
+    }
+    .submit{
+        margin-left: 825px;
+        margin-top: 40px;
+    }
+   button{
+       color: #fcfbf9;
+       background-color: #a6b0b0
+   }
+</style>
+<div class="edit">
+<h4>Edit complaint</h4>
+</div>
+<form method="post" action="{% url 'editscom' %}?c={{d.complaintid}}">
+    {% csrf_token %}
+<label id="name"></label>
+    <input type="text" class="input" value="{{d.name}}" placeholder="Enter petitioner name" id="name" name="name">
+    <label id=""></label>
+    <input type="number" class="input" value="{{d.phoneno}}" placeholder="Enter phone number" id ="phone" name="phone">
+    <label id=""></label>
+    <div class="body">
+        <input placeholder="write complaint..." value="{{d.complaint}}" name="complaint" class="text">
+    </div>
+    <div class="submit">
+        <button>Save changes</button>
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "adhome.html" %}
+{% load static %}
+{% block content %}
+<main>
+    <div class="container-fluid px-4">
+        <h2 class="mt-4" align="center"><b>Add district</b></h2><hr>
+        </div>
+        <div class="district">
+            <form method="post" action="{% url 'dis' %}">
+                {% csrf_token %}
+            <div class="content">
+                <h5>District name</h5>
+            </div>
+            <div class="input">
+                <input type="text" id="name" name="district" required>
+            </div>
+            <button id="button" type="submit" value="Submit">Submit</button>
+            </form>
+        </div>
+</main>
+{% endblock %}

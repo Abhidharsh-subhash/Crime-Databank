@@ -1,0 +1,111 @@
+{% extends "adhome.html" %}
+{% load static %}
+{% block content %}
+<style>
+   
+    h4{
+        margin-left: 295px;
+    }
+</style>
+<main>
+    <div class="container-fluid px-4">
+        <h2 class="mt-4" align="center"><b>Police List</b></h2>
+        <hr>
+    </div>
+</main>
+<div  class="table">
+    <table width="83%" border="1px">
+        <thead>
+            <tr align="center">
+            <th>Sl:No</th>
+            <th>Name</th>
+            <th>Qualification</th>
+            <th>Gender</th>
+            <th>Phone No</th>
+            <th>District</th>
+            <th>Address</th>
+            <th>Rewards</th>
+            <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for d in datapol %}
+            <tr align="center">
+                <td>{{forloop.counter}}</td>
+                <td>{{d.name}}</td>
+                <td>{{d.qualification}}</td>
+                <td>{{d.gender}}</td>
+                <td>{{d.mobileno}}</td>
+                <td>{{d.district.district}}</td>
+                <td>{{d.address}}</td>
+                <td>{{d.rewards}}</td>
+                <td>
+                    <a type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-{{d.policeid}}">Delete</a>
+                    <a type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#edit-{{d.policeid}}">Edit</a>
+                </td>
+                <div class="modal" id="delete-{{d.policeid}}" role="dialog">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content" style="background-color: #ffff">
+                        <div class="modal-header">
+                          <h4 class="modal-title custom_align" id="Heading">Delete police</h4>
+                        </div>
+                        <div class="modal-body" style="background-color: #ffff">
+                          <form class="form-horizontal" method="post" name="myForm" action="{% url 'deletepol' %}">
+                            {% csrf_token %}
+   
+                            <input type="hidden" class="form-control" value="{{d.login.logid}}" name="id">
+          
+                            <div class="box-content">
+                              <div class="col-md-12">
+                                <h3 class="modal-title custom_align" id="Heading" style="color: #333">Are you sure want to delete ?</h3>
+                              </div>
+                              <br>
+                              <button name="edit" type="submit" class="btn btn-success"><span class="glyphicon 
+                                  glyphicon-ok-sign"></span>Submit</button>
+                              <button type="reset" class="btn btn-default pull-right" data-bs-dismiss="modal"><span
+                                  class="glyphicon glyphicon-remove"></span>No</button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="modal fade" id="edit-{{d.policeid}}" role="dialog">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content" style="background-color: #ffff">
+                            <div class="modal-header">
+                                <h4 class="modal-title custom_align" id="Heading">Edit police details</h4>
+                            </div>
+                            <div class="modal-body">
+                                <br>
+                                <h3 class="modal-title custom_align" id="Heading" style="color:#333">Do You Want to Edit This ?</h3>
+                                <br>
+                                <form class="form-horizontal" method="post" name="myForm" onsubmit="" action="{% url 'editpol' %}?c={{d.policeid}}">
+                                    {% csrf_token %}
+
+                                    <div class="box-content">
+                                        <div class="col-md-10 col-md-offset-2">
+                                            <div class="form-group"></div>
+                                        </div>
+                                        <button name="edit" type="submit"
+                                            class="btn btn-success"><span class="glyphicon 
+                                                glyphicon-ok-sign"></span>Yes</button>
+                                        <button type="reset" class="btn btn-default pull-right"
+                                            data-bs-dismiss="modal"><span
+                                                class="glyphicon glyphicon-remove"></span>No</button>
+                                    </div>
+                            </div>
+                        </div>
+
+                        </form>
+                       
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

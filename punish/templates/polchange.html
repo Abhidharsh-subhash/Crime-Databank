@@ -1,0 +1,116 @@
+{% extends "polhome.html" %}
+{% load static %}
+{% block content %}
+<style>
+    #pass{
+        margin-left: -231px;
+    }
+    .head{
+        background-color: rgb(220 218 218);
+        width: 640px;
+        padding: 9px;
+    }
+    .title{
+        margin-left: -341px;
+        margin-top: -8px;
+    }
+    .content{
+        background-color: #e5eff4;
+        width: 641px;
+        /* padding: 150px; */
+        margin-left: 100px;
+        margin-top: 3px;
+        height: 390px;
+    }
+    #form{
+        margin-left: 190px;
+    }
+   .input{
+       margin-top: -104px;
+   }
+   #old{
+       margin-left: -375px;
+       font-size: 22px;
+       width: auto;
+       margin-top: 95px;
+   }
+   .old{
+       margin-left: -76px;
+       margin-top: -28px;
+   }
+   input{
+       border-radius: 7px;
+       width: 222px;
+       margin-top: -1px;
+   }
+   #new{
+       margin-left: -347px;
+       font-size: 22px;
+       width: auto;
+       margin-top: 28px;
+   }
+   .new{
+       margin-left: 109px;
+       margin-top: -26px;
+   }
+   .button{
+       margin-top: 45px;
+   }
+   #button{
+       background-color: #eeb7ae;
+       margin-left: -220px;
+   }
+   #close{
+    background-color: #f03535;
+    width: 60px;
+   }
+   .close{
+       margin-left: 265px;
+       margin-top: -93px;
+   }
+   .enter{
+       font-size: 22px;
+       width : fit-content;
+       margin-left: -349px;
+       margin-top: 28px;
+    }
+    #enter{
+        margin-left: 106px;
+        margin-top: -27px;
+    }
+</style>
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4" align="center"><b></b></h1>
+    </div><br>
+    <div class="form" align="center">
+    <form method="post" action="" id="form" onsubmit="return validateform(this);">
+        {% csrf_token %}
+        <div class="head">
+            <div id="pass">
+            <h2>Change your password</h2>
+            </div>
+            <div class="title">
+                <h6>Create a new secure password</h6>
+            </div>
+        </div>
+        <div class="content">
+            <div class="input">
+              <div id="old">Old-password&emsp;:</div>
+              <div class="old"><input type="text" name="old"></div>
+            </div>
+            <div id="new">New-password&emsp;:</div>
+            <div class="new"><input type="text" name="password"></div>
+            <div class="enter"> Re-enter<br>new-password&emsp;:</div>
+            <div id="enter"><input type="text" name="newpassword"></div>
+            <div class="button">
+                <button type="submit" id="button">Change</button>
+            </div>
+        </div>
+    </form>
+    <div class="close">
+        <button id="close">Close</button>
+    </div>
+      </div>
+    </main>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "adhome.html" %}
+{% load static %}
+{% block content %}
+<style>
+   
+    h4{
+        margin-left: 295px;
+    }
+    h2{
+        margin-left: 175px;
+    }
+    th{
+        font-size: 20px;
+    }
+</style>
+<main>
+    <div class="container-fluid px-4">
+        <h2 class="mt-4" align="center"><b>Police complaint List</b></h2>
+        <hr>
+    </div>
+</main>
+<div  class="table">
+    <table width="83%" border="1px">
+        <thead>
+            <tr align="center">
+            <th>Sl:No</th>
+            <th>Name</th>
+            <th>Designation</th>
+            <th>Mobile No</th>
+            <th>Complaint</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for d in datal %}
+            <tr align="center">
+                <td>{{forloop.counter}}</td>
+                <td>{{d.name}}</td>
+                <td>{{d.designation}}</td>
+                <td>{{d.mobileno}}</td>
+                <td>{{d.polcom}}</td>
+               </tr>
+            {% endfor %}
+            </tbody>
+{% endblock %}

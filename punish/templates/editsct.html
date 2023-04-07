@@ -1,0 +1,37 @@
+{% extends "adhome.html" %}
+{% load static %}
+{% block content %}
+<style>
+    h4{
+        margin-left: 775px;
+    font-size: 35px;
+    margin-top: 40px;
+    }
+    form{
+        margin-left: 300px;
+        margin-top: 35px;
+    }
+    label{
+        margin-top: 5px;
+    margin-left: 383px;
+    font-size: 19px;
+    }
+    input{
+        margin-top: 5px;
+        margin-left: 40px;
+    }
+    button{
+        margin-left: 500px;
+    margin-top: 25px;
+    }
+</style>
+<div>
+    <h4>Edit category</h4>
+</div>
+<form method="post" action="{% url 'editsct' %}?i={{d.categoryid}}">
+    {% csrf_token %}
+    <label><b>Category name:</b></label>
+    <input name="t1" value="{{d.category}}"><br>
+    <button>Update</button>
+</form>
+{% endblock %}

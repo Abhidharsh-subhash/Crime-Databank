@@ -1,0 +1,48 @@
+{% extends "polhome.html" %}
+{% load static %}
+{% block content %}
+<style>
+    h2{
+        margin-left: 713px;
+    margin-top: 25px;
+    font-size: 35px;
+    }
+</style>
+<h2 >
+    Compalints list
+</h2><hr>
+<div  class="table">
+    <table width="83%" border="1px">
+        <thead>
+            <tr align="center">
+            <th>Sl:No</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Phone No</th>
+            <th>Category</th>
+            <th>District</th>
+            <th>Location</th>
+            <th>Complaint description</th>
+            <th>Action</th>
+            </tr>
+        </thead>
+        {% for d in dataco %}
+        <tbody>
+            <tr align="center">
+                <td>{{forloop.counter}}</td>
+                <td>{{d.name}}</td>
+                <td>{{d.spot}}</td>
+                <td>{{d.phoneno}}</td>
+                <td>{{d.category.category}}</td>
+                <td>{{d.district.district}}</td>
+                <td>{{d.location.location}}</td>
+                <td>{{d.complaint}}</td>
+                <td>
+                  <a type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="">Action</a>
+                </td>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+    </div>
+{% endblock %}
